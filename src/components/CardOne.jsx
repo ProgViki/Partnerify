@@ -9,7 +9,7 @@ const CardOne = () => {
     <View className="ml-4 w-[310px] h-[170px] bg-[#369FFF] rounded-2xl drop-shadow-lg">
     <ImageBackground  source={require('../assets/images/Vector.png')} 
         className=" "
-        resizeMode='contain'>
+        resizeMode='contain'> 
     <View className="mt-6 ml-6 flex flex-row justify-between"> 
     <View className="">
         <Text className="font-bold text-white  ">Healing School</Text>
@@ -34,9 +34,9 @@ const CardOne = () => {
     </ProgressCircle>
  
  
-    <TouchableOpacity className="bg-white w-[150px] h-10 rounded-md mt-6 mr-5">
+    {/* <TouchableOpacity className="bg-white w-[150px] h-10 rounded-md mt-6 mr-5">
       <Text className="text-[#369FFF] text-center mt-2">Make Payment</Text>
-    </TouchableOpacity>
+    </TouchableOpacity> */}
     </View>
   </View>
     </ImageBackground>

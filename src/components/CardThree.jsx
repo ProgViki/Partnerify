@@ -33,9 +33,9 @@ const CardThree = () => {
     </ProgressCircle>
  
  
-    <TouchableOpacity className="bg-white w-[150px] h-10 rounded-md mt-6 mr-5">
+    {/* <TouchableOpacity className="bg-white w-[150px] h-10 rounded-md mt-6 mr-5">
     <Text className="text-[#FFD143] text-center mt-2">Make Payment</Text>
-    </TouchableOpacity>
+    </TouchableOpacity> */}
     </View>
   </View>
     </ImageBackground>

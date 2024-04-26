@@ -6,7 +6,6 @@ import CardOne from '../components/CardOne';
 import CardTwo from '../components/CardTwo';
 import CardThree from '../components/CardThree';
 import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
-import { CustomButton } from '../components';
 
 
 
@@ -69,33 +68,33 @@ const Home = () => {
        
     </View>
 
-    <View>
+    <View className="">
     <Text className="pl-5 pt-5 text-lg font-bold mb-8">Partnership Giving Type</Text>
-    <View>
-    <View className="w-[220px] h-[100px] bg-gray-200 flex flex-row justify-center items-center gap-4 rounded-xl ml-2">
-    <Text className="w-10 h-10 bg-[#369FFF] opacity-20 text-center mt-4 rounded-xl"><MaterialIcons name="live-tv" size={24} color="#369FFF" className=""/></Text>
-    <Text className="font-bold">Loveworld TV/Radio</Text>
+    <View className="flex flex-row flex-wrap gap-2">
+    <View className="w-[160px] h-[60px] bg-gray-200 flex flex-row justify-center items-center gap-2 rounded-xl ml-2">
+    <Text className="w-8 h-8 bg-[#369FFF] opacity-20 text-center pb rounded-xl text-[6px]"><MaterialIcons name="live-tv" size={24} color="#369FFF" className=""/></Text>
+    <Text className="font-bold text-[10px]">Loveworld TV/Radio</Text>
     </View>
-    <View className="w-[220px] h-[100px] bg-gray-200 flex flex-row justify-center items-center gap-4 rounded-xl ml-2 mt-4">
-    <Text className="w-10 h-10 bg-[#369FFF] opacity-20 text-center mt-4 rounded-xl"><MaterialIcons name="live-tv" size={24} color="#369FFF" className=""/></Text>
-    <Text className="font-bold">Loveworld TV/Radio</Text>
+    <View className="w-[160px] h-[60px] bg-gray-200 flex flex-row justify-center items-center gap-2 rounded-xl ml-2 mt-2">
+    <Text className="w-8 h-8 bg-[#369FFF] opacity-20 text-center pb text-[6px] rounded-xl"><MaterialIcons name="live-tv" size={24} color="#369FFF" className=""/></Text>
+    <Text className="font-bold text-[10px]">Loveworld TV/Radio</Text>
     </View>
-    <View className="w-[220px] h-[100px] bg-gray-200 flex flex-row justify-center items-center gap-4 rounded-xl ml-2 mt-4">
-    <Text className="w-10 h-10 bg-[#369FFF] opacity-20 text-center mt-4 rounded-xl"><MaterialIcons name="live-tv" size={24} color="#369FFF" className=""/></Text>
-    <Text className="font-bold">Loveworld TV/Radio</Text>
+    <View className="w-[160px] h-[60px] bg-gray-200 flex flex-row justify-center items-center gap-2 rounded-xl ml-2 mt-2">
+    <Text className="w-8 h-8 bg-[#369FFF] opacity-20 text-center pb text-[6px] rounded-xl"><MaterialIcons name="live-tv" size={24} color="#369FFF" className=""/></Text>
+    <Text className="font-bold text-[10px]">Loveworld TV/Radio</Text>
     </View>
     </View>
     
     </View>
-    <View className="flex-1 my-10">
-        <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
+    <View className="flex-1 my-10 ">
+        <Table borderStyle={{borderWidth: 1, borderColor: '#c8e1ff'}}>
           <Row data={showTable.tableHead} />
           <Rows data={showTable.tableData} />
         </Table>
       </View>
 
      <TouchableOpacity
-        className="bg-primary w-[150px] h-[50px] rounded-xl mx-auto mb-10"
+        className="bg-primary w-[150px] h-[50px] rounded-xl mx-auto mb-10"git 
         >
         <Text className="text-center mt-3 text-white text-lg">see more</Text>
      </TouchableOpacity>

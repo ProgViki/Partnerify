@@ -3,13 +3,13 @@ import { Link, router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, ScrollView, Dimensions, Alert, Image } from "react-native";
 import tw from 'tailwind-react-native-classnames';
-import { FormField, CustomButton} from "../components";
+import { FormField, CustomButton} from "../../components";
 import { FontAwesome5 } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 
 
-const SignIn = () => {
+const Login = () => {
   
 
   return (
@@ -77,4 +77,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default Login;
