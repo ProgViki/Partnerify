@@ -15,9 +15,9 @@ const Home = () => {
     const showTable = {
         tableHead: ['PAYMENT ID', 'STATUS', 'AMOUNT', 'PAYMENT DATE'],
         tableData: [
-            ['1', 'Succeeded', '$5000', 'Mar 23, 2022, 13:00PM'],
-            ['2', 'Pending', '$6000', 'Mar 24, 2022, 13:00PM'], 
-            ['3', 'Declined', '$7000', 'Mar 25, 2022, 13:00PM'],
+            ['123456', 'Succeeded', '$5000', 'Mar 23, 2022, 13:00PM'],
+            ['234567', 'Pending', '$6000', 'Mar 24, 2022, 13:00PM'], 
+            ['345678', 'Declined', '$7000', 'Mar 25, 2022, 13:00PM'],
 
         ]
     }
@@ -86,10 +86,10 @@ const Home = () => {
     </View>
     
     </View>
-    <View className="flex-1 my-10 ">
-        <Table borderStyle={{borderWidth: 1, borderColor: '#c8e1ff'}}>
-          <Row data={showTable.tableHead} />
-          <Rows data={showTable.tableData} />
+    <View className="flex-1 my-10 pl-2 pr-4">
+        <Table borderStyle={{borderWidth: 1, borderColor: '#c8e1ff'}} >
+          <Row data={showTable.tableHead} className="text-center" />
+          <Rows data={showTable.tableData} className="text-center" />
         </Table>
       </View>
 

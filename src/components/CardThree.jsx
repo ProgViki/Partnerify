@@ -5,7 +5,7 @@ import ProgressCircle from 'react-native-progress-circle'
 import { Feather, AntDesign, Ionicons, Octicons, FontAwesome6 } from "@expo/vector-icons";
 const CardThree = () => {
   return (
-    <View className="ml-4 w-[310px] h-[170px] bg-[#FFD143] rounded-2xl drop-shadow-lg mt-10">
+    <View className="ml-4 w-[270px] h-[150px] bg-[#FFD143] rounded-2xl drop-shadow-lg my-2">
     <ImageBackground  source={require('../assets/images/Vector.png')} 
         className=" "
         resizeMode='contain'>

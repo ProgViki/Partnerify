@@ -6,10 +6,10 @@ import { Feather, AntDesign, Ionicons, Octicons, FontAwesome6 } from "@expo/vect
 
 const CardOne = () => {
   return (
-    <View className="ml-4 w-[310px] h-[170px] bg-[#369FFF] rounded-2xl drop-shadow-lg">
+    <View className="ml-4 w-[270px] h-[150px] bg-[#369FFF] rounded-2xl drop-shadow-lg my-2">
     <ImageBackground  source={require('../assets/images/Vector.png')} 
         className=" "
-        resizeMode='contain'> 
+        resizeMode='contain'>
     <View className="mt-6 ml-6 flex flex-row justify-between"> 
     <View className="">
         <Text className="font-bold text-white  ">Healing School</Text>

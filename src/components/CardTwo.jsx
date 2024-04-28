@@ -6,7 +6,7 @@ import { Feather, AntDesign, Ionicons, Octicons, FontAwesome6 } from "@expo/vect
 
 const CardTwo = () => {
   return (
-    <View className="ml-4 w-[310px] h-[170px] bg-[#FF993A] rounded-2xl drop-shadow-lg mt-10">
+    <View className="ml-4 w-[270px] h-[150px] bg-[#FF993A] rounded-2xl drop-shadow-lg my-2">
         <ImageBackground  source={require('../assets/images/Vector.png')} 
             className=" "
             resizeMode='contain'>

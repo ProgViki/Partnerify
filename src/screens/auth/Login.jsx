@@ -1,7 +1,7 @@
 // import { useState } from "react";
 import { Link, router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { View, Text, ScrollView, Dimensions, Alert, Image } from "react-native";
+import { View, Text, ScrollView, TouchableOpacity, Dimensions, Alert, Image, Button } from "react-native";
 import tw from 'tailwind-react-native-classnames';
 import { FormField, CustomButton} from "../../components";
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -10,7 +10,10 @@ import { FontAwesome } from '@expo/vector-icons';
 
 
 const Login = () => {
-  
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+  const [focused, setFocused] = useState(false);
+  const [focusedPassword, setFocusedPassword] = useState(false);
 
   return (
     <SafeAreaView style={tw`flex-1 w-full h-full`}>
@@ -44,12 +47,17 @@ const Login = () => {
             otherStyles="mt-7"
           />
 
-          <CustomButton
+          {/* <CustomButton
             title="Log In"
             // handlePress={submit}
             containerStyles="mt-7"
             // isLoading={isSubmitting}
-          />
+          /> */}
+          <TouchableOpacity className="bg-primary mt-7">
+            <Link href="/Home">
+              <Text className="font-thin text-center">Log In</Text>
+            </Link>
+          </TouchableOpacity>
 
           <View style={{ marginTop: 20}}>
             <Text style={{ fontSize: 14, fontWeight: 'thin', color: 'black', paddingBottom: 10}}>
@@ -61,6 +69,7 @@ const Login = () => {
             containerStyles="mt-7"
             // isLoading={isSubmitting}
           />
+          
           </View>
           <Text style={{ fontSize: 14, fontWeight: 'thin', color: '#A90116'}}>Forget Password?</Text>
           <View style={{ marginTop: 20}}>

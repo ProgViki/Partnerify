@@ -1,7 +1,7 @@
 // import { useState } from "react";
 import { Link, router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { View, Text, ScrollView, Dimensions, Alert, Image } from "react-native";
+import { View, Text, ScrollView, Dimensions, Alert, Image, TouchableOpacity } from "react-native";
 import tw from 'tailwind-react-native-classnames';
 import { FormField, CustomButton} from "../../components";
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -54,12 +54,17 @@ const SignUp = () => {
             <Text style={{ fontSize: 14, fontWeight: 'thin', color: 'black', paddingBottom: 10}}>
               Don't have an account?
             </Text>
-            <CustomButton
+            {/* <CustomButton
             title="Create Account"
             // handlePress={submit}
             containerStyles="mt-7"
             // isLoading={isSubmitting}
-          />
+          /> */}
+          <TouchableOpacity className="bg-primary mt-7">
+            <Link href="/Home">
+              <Text className="font-thin text-center">Log In</Text>
+            </Link>
+          </TouchableOpacity>
           <Text className=" mt-12 text-center">Already have an account?</Text>
           <Text className="text-center mb-10 underline text-primary" ><Link href="/Home">sign in</Link>
           </Text>
