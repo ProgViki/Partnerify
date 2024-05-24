@@ -1,37 +1,69 @@
 // import { useState } from "react";
-import { Link, router } from "expo-router";
+import { Link, router, useNavigation } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { View, Text, ScrollView, TouchableOpacity, Dimensions, Alert, Image, Button } from "react-native";
-import tw from 'tailwind-react-native-classnames';
+import { View, Text } from "react-native";
 import { FormField, CustomButton} from "../../components";
 import { FontAwesome5 } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
+import { Formik } from "formik";
+import { useTogglePasswordVisibility } from "../../hooks";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { loginValidationSchema } from "../utils";
+import { FormErrorMessage } from "../../components/FormErrorMessage";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+// import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+
+
 
 
 const Login = () => {
-  const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("");
-  const [focused, setFocused] = useState(false);
-  const [focusedPassword, setFocusedPassword] = useState(false);
+
+  const navigation = useNavigation();
+  const [errorState, setErrorState] = useState("");
+  const { passwordVisibility, handlePasswordVisibility, rightIcon } =
+    useTogglePasswordVisibility();
+
+  const handleLogin = (values) => {
+    const { email, password } = values;
+    signInWithEmailAndPassword(auth, email, password).catch((error) =>
+      setErrorState(error.message)
+    );
+  };
 
   return (
     <SafeAreaView style={tw`flex-1 w-full h-full`}>
-      <ScrollView>
+      <KeyboardAwareScrollView>
         <View
           style={tw`w-full flex justify-center h-full px-4 my-6 mx-auto`}
         >
-         <Text style={{ fontSize: 24, fontWeight: 'medium', color: '#369FFF'}}>
+         <Text sty className="text-2xl font-medium text-[#369FFF] font-[Poppins]">
             Welcome Back!
           </Text>
-          <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#369FFF'}}>
+          <Text className="text-2xl font-bold text-[#369FFF] font-[Poppins]">
             Enter Your Details
           </Text>
 
-          <Text style={{ fontSize: 14, fontWeight: 'thin', color: '#369FFF'}}>
+          <Text  className="text-2xl font-thin text-[#369FFF] font-[Poppins]">
             Log in to continue your MPS
           </Text>
 
+          <Formik
+            initialValues={{email: "", password: "",
+            }}
+            validationSchema={loginValidationSchema}
+            onSubmit={(values) => handleLogin(values)}
+          >
+            {({
+              values,
+              touched,
+              errors,
+              handleChange,
+              handleSubmit,
+              handleBlur,
+            }) => (
+              <>
+                {/* Input fields */}
           <FormField
             title="Email"
             // value={email}
@@ -46,18 +78,30 @@ const Login = () => {
             // handleChangeText={(e) => setForm({ ...form, password: e })}
             otherStyles="mt-7"
           />
-
-          {/* <CustomButton
+              <FormErrorMessage
+                  error={errors.password}
+                  visible={touched.password}
+                />
+                 {/* Display Screen Error Messages */}
+                 {errorState !== "" ? (
+                  <FormErrorMessage error={errorState} visible={true} />
+                ) : null}
+                {/* Login button */}
+          <CustomButton
             title="Log In"
-            // handlePress={submit}
+            onPress={handleSubmit}
             containerStyles="mt-7"
             // isLoading={isSubmitting}
-          /> */}
-          <TouchableOpacity className="bg-primary mt-7">
+            className="font-thin text-center"
+          />
+          {/* <TouchableOpacity className="bg-primary mt-7">
             <Link href="/Home">
               <Text className="font-thin text-center">Log In</Text>
             </Link>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
+          </>
+            )}
+          </Formik>
 
           <View style={{ marginTop: 20}}>
             <Text style={{ fontSize: 14, fontWeight: 'thin', color: 'black', paddingBottom: 10}}>
@@ -66,6 +110,7 @@ const Login = () => {
             <CustomButton
             title="Create Account"
             // handlePress={submit}
+            onPress={() => navigation.navigate("Signup")}
             containerStyles="mt-7"
             // isLoading={isSubmitting}
           />
@@ -81,7 +126,7 @@ const Login = () => {
           <View className="bg-slate-400"><FontAwesome name="google" size={24} color="black" /></View>
         </View>
         </View>
-      </ScrollView>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 };

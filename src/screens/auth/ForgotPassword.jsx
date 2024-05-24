@@ -1,62 +1,84 @@
 // import { useState } from "react";
-import { Link, router } from "expo-router";
+import { Link, router, useNavigation } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, ScrollView, Dimensions, Alert, Image } from "react-native";
-import tw from 'tailwind-react-native-classnames';
-import { FormField, CustomButton} from "../../components";
-import { FontAwesome5 } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
-import { FontAwesome } from '@expo/vector-icons';
+// import { FormField, CustomButton} from "../../components";
+// import { FontAwesome5 } from '@expo/vector-icons';
+// import { AntDesign } from '@expo/vector-icons';
+// import { FontAwesome } from '@expo/vector-icons';
+import { Formik } from "formik";
+import { sendPasswordResetEmail } from "firebase/auth";
+
+import { passwordResetSchema } from "../utils";
 
 
 const ForgotPassword = () => {
+
+  const navigation = useNavigation();
+  const [errorState, setErrorState] = useState("");
+
+  const handleSendPasswordResetEmail = (values) => {
+    const { email } = values;
+
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        console.log("Success: Password Reset Email sent.");
+        navigation.navigate("Login");
+      })
+      .catch((error) => setErrorState(error.message));
+  };
   
-
   return (
-    <SafeAreaView style={tw`flex-1 w-full h-full`}>
-      <ScrollView>
-        <View
-          style={tw`w-full flex justify-center h-full px-4 my-6 mx-auto`}
-        >
-         <Text style={{ fontSize: 24, fontWeight: 'medium', color: '#369FFF'}}>
-            Forget Password!
-          </Text>
-          <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#369FFF'}}>
-            Enter Your Email
-          </Text>
-
-          <Text style={{ fontSize: 14, fontWeight: 'thin', color: '#369FFF'}}>
-            Enter the email associated with your account and we'll send
-            a verification code to your email.
-          </Text>
-
-          <FormField
-            title="Email"
-            // value={email}
-            // handleChangeText={(e) => setForm({ ...form, email: e })}
-            otherStyles="mt-7"
-            keyboardType="email-address"
-          />
-
-
-          <CustomButton
-            title="Forget Password"
-            // handlePress={submit}
-            containerStyles="mt-7"
-            // isLoading={isSubmitting}
-          />
-          <Text style={{ fontSize: 14, fontWeight: 'thin', color: '#A90116'}}>Forget Password?</Text>
-          <View style={{ marginTop: 20}}>
-          </View>
-          
-          <View className="flex justify-around items-center bg-gray-700">
-            <View style={{width: '60px', height: '60px', backgroundColor: '#A90116', borderRadius: 10,}}><FontAwesome5 name="facebook" size={24} color="black" /></View>
-          <View><AntDesign name="wechat" size={24} color="black" /></View>
-          <View className="bg-slate-400"><FontAwesome name="google" size={24} color="black" /></View>
-        </View>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <View isSafe style={styles.container}>
+      <View style={styles.innerContainer}>
+        <Text style={styles.screenTitle}>Reset your password</Text>
+      </View>
+      <Formik
+        initialValues={{ email: "" }}
+        validationSchema={passwordResetSchema}
+        onSubmit={(values) => handleSendPasswordResetEmail(values)}
+      >
+        {({
+          values,
+          touched,
+          errors,
+          handleChange,
+          handleSubmit,
+          handleBlur,
+        }) => (
+          <>
+            {/* Email input field */}
+            <TextInput
+              name="email"
+              leftIconName="email"
+              placeholder="Enter email"
+              autoCapitalize="none"
+              keyboardType="email-address"
+              textContentType="emailAddress"
+              value={values.email}
+              onChangeText={handleChange("email")}
+              onBlur={handleBlur("email")}
+            />
+            <FormErrorMessage error={errors.email} visible={touched.email} />
+            {/* Display Screen Error Mesages */}
+            {errorState !== "" ? (
+              <FormErrorMessage error={errorState} visible={true} />
+            ) : null}
+            {/* Password Reset Send Email  button */}
+            <Button style={styles.button} onPress={handleSubmit}>
+              <Text style={styles.buttonText}>Send Reset Email</Text>
+            </Button>
+          </>
+        )}
+      </Formik>
+      {/* Button to navigate to Login screen */}
+      <Button
+        className="w-full mt-2 rounded-md"
+        borderless
+        title={"Go back to Login"}
+        onPress={() => navigation.navigate("Login")}
+      />
+    </View>
   );
 };
 
